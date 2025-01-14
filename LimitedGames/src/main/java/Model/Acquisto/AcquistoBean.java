@@ -2,11 +2,17 @@ package Model.Acquisto;
 
 public class AcquistoBean {
 
-	private int IDAcquisto, IDOrdine, IDGioco, iva;
+	private int IDAcquisto, IDOrdine, IDGioco, iva, quantita;
 	private float prezzo;
 	private String immagine;
 	public int getIDAcquisto() {
 		return IDAcquisto;
+	}
+	public int getQuantita() {
+		return quantita;
+	}
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
 	}
 	public void setIDAcquisto(int iDAcquisto) {
 		IDAcquisto = iDAcquisto;

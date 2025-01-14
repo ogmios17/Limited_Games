@@ -1,4 +1,4 @@
-package Model.Utente;
+package Model.Ordine;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -7,9 +7,9 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 
-public class UtenteDAO {
+public class OrdineDAO {
 
-	private static final String TABLE_NAME = "Utente";
+	private static final String TABLE_NAME = "Ordine";
     private static final DataSource ds;
 	
 	 static {
@@ -23,30 +23,31 @@ public class UtenteDAO {
 	        }
 	    }
 	 
-	 public synchronized Collection<UtenteBean> doRetrieveByKey(String key) throws SQLException {
-	        Collection<UtenteBean> utenteKey = new ArrayList<>();
+	 public synchronized Collection<OrdineBean> doRetrieveByKey(int key) throws SQLException {
+	        Collection<OrdineBean> ordineKey = new ArrayList<>();
 	        Connection connection= null;
 	        PreparedStatement preparedStatement = null;
-	        String query = "SELECT * FROM " + TABLE_NAME + " WHERE username = ?";
+	        String query = "SELECT * FROM " + TABLE_NAME + " WHERE ID = ?";
 
 	        try {
 	        	connection = ds.getConnection(); 
 	        	preparedStatement = connection.prepareStatement(query);
-	            preparedStatement.setString(1, key);
+	            preparedStatement.setInt(1, key);
 
 	            ResultSet resultSet = preparedStatement.executeQuery();
-	            UtenteBean utenteBean = new UtenteBean();
+	            OrdineBean ordineBean = new OrdineBean();
 	            while (resultSet.next()) {
-	                utenteBean.setUsername(resultSet.getString("username"));
-	                utenteBean.setPassword(resultSet.getString("password"));
-	                utenteBean.setNome(resultSet.getString("nome"));
-	                utenteBean.setCognome(resultSet.getString("cognome"));
-	                utenteBean.setEmail(resultSet.getString("email"));
-	                utenteBean.setCAP(resultSet.getString("CAP"));
-	                utenteBean.setVia(resultSet.getString("via"));
-	                utenteBean.setCitta(resultSet.getString("citta"));
-	                utenteBean.setTipo(resultSet.getString("tipo"));
-	                utenteKey.add(utenteBean);
+	                ordineBean.setID(resultSet.getInt("ID"));
+	                ordineBean.setUsername(resultSet.getString("username"));
+	                ordineBean.setPrezzo(resultSet.getFloat("prezzo"));
+	                ordineBean.setDataConsegna(resultSet.getDate("dataConsegna"));
+	                ordineBean.setDataOrdine(resultSet.getDate("dataOrdine"));
+	                ordineBean.setNome(resultSet.getString("nome"));
+	                ordineBean.setCognome(resultSet.getString("cognome"));
+	                ordineBean.setVia(resultSet.getString("via"));
+	                ordineBean.setCitta(resultSet.getString("citta"));
+	                ordineBean.setCAP(resultSet.getString("CAP"));
+	                ordineKey.add(ordineBean);
 	            }
 
 	        } finally {
@@ -55,7 +56,7 @@ public class UtenteDAO {
 	            if (connection != null)
 	                connection.close();
 	        }
-	        return utenteKey;
+	        return ordineKey;
 	    }
 	 
 	 public synchronized Collection<OrdineBean> doRetriveAll() throws SQLException {

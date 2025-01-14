@@ -1,13 +1,13 @@
 package Model.Ordine;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class OrdineBean {
 
 	private int ID;
 	private String username, nome, cognome, via, citta, CAP;
 	private float prezzo;
-	private LocalDate dataConsegna, dataOrdine;
+	private Date dataConsegna, dataOrdine;
 	public int getID() {
 		return ID;
 	}
@@ -56,16 +56,16 @@ public class OrdineBean {
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
-	public LocalDate getDataConsegna() {
+	public Date getDataConsegna() {
 		return dataConsegna;
 	}
-	public void setDataConsegna(LocalDate dataConsegna) {
+	public void setDataConsegna(Date dataConsegna) {
 		this.dataConsegna = dataConsegna;
 	}
-	public LocalDate getDataOrdine() {
+	public Date getDataOrdine() {
 		return dataOrdine;
 	}
-	public void setDataOrdine(LocalDate dataOrdine) {
+	public void setDataOrdine(Date dataOrdine) {
 		this.dataOrdine = dataOrdine;
 	}
 	

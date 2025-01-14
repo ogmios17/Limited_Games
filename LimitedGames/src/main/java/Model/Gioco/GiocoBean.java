@@ -1,13 +1,34 @@
 package Model.Gioco;
 
+import java.sql.Date;
+
 public class GiocoBean {
 	
 	private int id, iva;
 	private float prezzo;
-	private String descrizione, edizione;
+	private String descrizione, edizione,titolo,immagine;
+	private Date ReleaseDate;
 	
 	public int getId() {
 		return id;
+	}
+	public String getTitolo() {
+		return titolo;
+	}
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
+	}
+	public String getImmagine() {
+		return immagine;
+	}
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
+	}
+	public Date getReleaseDate() {
+		return ReleaseDate;
+	}
+	public void setReleaseDate(Date releaseDate) {
+		ReleaseDate = releaseDate;
 	}
 	public void setId(int id) {
 		this.id = id;
